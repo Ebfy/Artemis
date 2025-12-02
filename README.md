@@ -534,25 +534,10 @@ pip install torch-geometric
 
 If you use ARTEMIS in your research, please cite:
 
-```bibtex
-@article{artemis2024,
-  title={ARTEMIS: Adversarial-Resistant Temporal Embedding Model for 
-         Intelligent Security in Blockchain Fraud Detection},
-  author={BlockchainLab},
-  journal={Information Processing \& Management},
-  year={2024},
-  volume={XX},
-  number={X},
-  pages={XXX--XXX},
-  doi={10.1016/j.ipm.2024.XXXXX}
-}
-```
+
 
 ---
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -564,11 +549,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## Contact
-
-For questions or issues, please:
-1. Open a GitHub issue
-2. Contact: [your-email@institution.edu]
 
 ---
 
