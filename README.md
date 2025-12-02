@@ -4,7 +4,7 @@
 [![PyTorch 2.0+](https://img.shields.io/badge/pytorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Target Publication**: Information Processing & Management (Q1, IF: 7.466)
+> **Target Publication**: Information Processing & Management 
 
 ARTEMIS is an advanced blockchain fraud detection system designed for Ethereum phishing detection on temporal transaction graphs. It significantly outperforms existing state-of-the-art methods including 2DynEthNet by integrating six theoretical innovations into a unified architecture.
 
