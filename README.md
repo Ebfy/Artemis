@@ -234,7 +234,8 @@ if torch.cuda.is_available():
 
 ARTEMIS uses the ETGraph dataset for Ethereum transaction analysis:
 
-- **Source**: [ETGraph on Zenodo](https://zenodo.org/record/XXXXXXX) or [Kaggle](https://kaggle.com/datasets/XXXXXXX)
+- **Source**: https://xblock.pro/#/
+dataset/68
 - **Size**: ~10 GB (compressed)
 - **Transactions**: Blocks 8,000,000 - 14,500,000
 - **Phishing Labels**: 9,032 verified phishing addresses
