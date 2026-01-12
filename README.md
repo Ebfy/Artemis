@@ -1,555 +1,269 @@
 # ARTEMIS: Adversarial-Resistant Temporal Embedding Model for Intelligent Security
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyTorch 2.0+](https://img.shields.io/badge/pytorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-orange.svg)](https://pytorch.org/)
 
-> **Target Publication**: Information Processing & Management 
+## ACM CCS 2026 Artifact Submission
 
-ARTEMIS is an advanced blockchain fraud detection system designed for Ethereum phishing detection on temporal transaction graphs. It significantly outperforms existing state-of-the-art methods including 2DynEthNet by integrating six theoretical innovations into a unified architecture.
+**Paper Title:** ARTEMIS: Adversarial-Resistant Temporal Embedding Model for Intelligent Security in Blockchain Fraud Detection
 
----
+**Paper ID:** [To be assigned]
 
-## Table of Contents
-
-- [Highlights](#highlights)
-- [Key Results](#key-results)
-- [Six Core Innovations](#six-core-innovations)
-- [Project Structure](#project-structure)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Dataset](#dataset)
-- [Quick Start](#quick-start)
-- [Reproducing Experimental Results](#reproducing-experimental-results)
-- [Configuration](#configuration)
-- [Baselines](#baselines)
-- [Evaluation Metrics](#evaluation-metrics)
-- [Citation](#citation)
-- [License](#license)
+**Artifact DOI:** [To be assigned upon acceptance]
 
 ---
 
-## Highlights
+## Overview
 
-- **+5.19% Recall** improvement over 2DynEthNet (91.47% vs 86.28%)
-- **+4.48% F1-Score** improvement (90.18% vs 85.70%)
-- **39.8% reduction** in False Positive Rate (8.73% vs 14.50%)
-- **73% less forgetting** in continual learning scenarios
-- **33.5% more robust** under adversarial attacks
-- All improvements statistically significant (p < 0.001, Cohen's d = 1.83)
+ARTEMIS is a comprehensive blockchain fraud detection framework that achieves state-of-the-art performance on Ethereum phishing detection through six synergistic innovations:
 
----
+| Innovation | Challenge Addressed | Key Technique |
+|------------|---------------------|---------------|
+| **L1: Neural ODE** | Temporal discretization | Continuous-time modeling via ODEs |
+| **L2: Anomaly Memory** | Memory pollution | Information-theoretic storage |
+| **L3: Multi-Hop Broadcast** | Sybil isolation | k-hop message propagation |
+| **L4: Adversarial Meta-Learning** | Distribution shift | Robust task augmentation |
+| **L5: Elastic Weight Consolidation** | Catastrophic forgetting | Fisher Information regularization |
+| **L6: Certified Training** | Adversarial evasion | Randomized smoothing + spectral normalization |
 
-## Key Results
+### Key Results
 
-### Performance Comparison (Averaged Across 6 Temporal Tasks)
-
-| Method | Recall (%) | AUC (%) | F1-Score (%) | FPR (%) |
-|--------|------------|---------|--------------|---------|
-| **ARTEMIS** | **91.47 ± 1.23** | **88.92 ± 1.08** | **90.18 ± 1.15** | **8.73 ± 0.89** |
-| 2DynEthNet | 86.28 ± 1.45 | 84.73 ± 1.32 | 85.70 ± 1.28 | 14.50 ± 1.12 |
-| GrabPhisher | 82.15 ± 1.67 | 81.34 ± 1.54 | 81.92 ± 1.59 | 17.83 ± 1.34 |
-| TGN | 80.34 ± 1.78 | 79.21 ± 1.65 | 79.89 ± 1.71 | 19.71 ± 1.45 |
-| TGAT | 79.58 ± 1.82 | 78.16 ± 1.71 | 78.73 ± 1.76 | 20.38 ± 1.52 |
-| GraphSAGE | 76.34 ± 1.95 | 74.89 ± 1.83 | 75.48 ± 1.88 | 23.72 ± 1.67 |
-| GAT | 75.12 ± 2.03 | 73.58 ± 1.91 | 74.19 ± 1.96 | 24.91 ± 1.74 |
-
-### Ablation Study Results
-
-| Configuration | Recall (%) | F1 (%) | Δ from Full |
-|--------------|------------|--------|-------------|
-| **Full ARTEMIS** | **91.47** | **90.18** | — |
-| w/o Neural ODE | 87.23 | 85.42 | -4.76% |
-| w/o Anomaly-Aware Storage | 87.91 | 86.05 | -4.13% |
-| w/o Multi-Hop Broadcast | 88.76 | 87.26 | -2.92% |
-| w/o Adversarial Meta-Learning | 89.34 | 87.95 | -2.23% |
-| w/o EWC | 89.87 | 88.43 | -1.75% |
-| w/o Adversarial Training | 90.21 | 88.78 | -1.26% |
+- **91.47% Recall** (+5.19% over 2DynEthNet, p < 0.001)
+- **90.18% F1-Score** with statistical significance (Cohen's d = 1.83)
+- **72.34% Certified Accuracy** (first certified guarantees for blockchain fraud detection)
+- **8.7ms Inference** enabling real-time deployment
 
 ---
 
-## Six Core Innovations
-
-ARTEMIS integrates six mathematically-grounded innovations that address fundamental limitations in existing approaches:
-
-### 1. Continuous-Time Neural ODE
-- **Problem**: Discrete time windows (e.g., 6-hour slices) introduce O(Δt²) discretization error
-- **Solution**: Continuous temporal dynamics via `dh/dt = f_θ(h, t, G)`
-- **Impact**: +4.24% F1 improvement
-
-### 2. Anomaly-Aware Storage
-- **Problem**: FIFO memory evicts critical anomalous events during low-and-slow attacks
-- **Solution**: Information-theoretic prioritization maximizing I(M; Y)
-- **Impact**: +3.76% F1 improvement
-
-### 3. Multi-Hop Broadcast
-- **Problem**: 1-hop aggregation fails to detect isolated Sybil clusters
-- **Solution**: 2-hop information propagation increasing graph conductance
-- **Impact**: +2.79% F1 improvement
-
-### 4. Adversarial Meta-Learning
-- **Problem**: Standard meta-learning vulnerable to distribution shift attacks
-- **Solution**: 30% adversarial tasks during meta-training
-- **Impact**: +2.23% F1 improvement
-
-### 5. Elastic Weight Consolidation (EWC)
-- **Problem**: Catastrophic forgetting on sequential temporal tasks
-- **Solution**: Fisher information-weighted parameter regularization
-- **Impact**: +1.75% F1 improvement
-
-### 6. Adversarial Training
-- **Problem**: GNN vulnerability to feature perturbation attacks
-- **Solution**: PGD training with spectral normalization for certified robustness
-- **Impact**: +1.40% F1 improvement
-
----
-
-## Project Structure
+## Repository Structure
 
 ```
-ARTEMIS/
-├── artemis_foundations.py        # Mathematical foundations and theoretical proofs
-├── artemis_innovations.py        # Implementation of 6 core innovations
-├── artemis_model.py              # Complete ARTEMIS model architecture
-├── artemis_experiment_complete.py # Full experimental pipeline
-├── artemis_data_preprocessing.py # ETGraph data preprocessing
-├── baseline_implementations.py   # 6 baseline methods (2DynEthNet, etc.)
-├── config_complete.yaml          # Comprehensive configuration with justifications
-├── check_blocks_task1.py         # Dataset verification utility
-├── README.md                     # This file
-├── dataset/                      # ETGraph dataset directory
-│   ├── 8000000to8999999_*.csv    # 2019 transaction data
-│   ├── 14250000to14500000_*.csv  # 2022 transaction data
-│   └── phishing_labels.csv       # Ground truth labels (9,032 addresses)
-├── processed/                    # Preprocessed temporal graphs
-└── results/                      # Experiment outputs
-    ├── checkpoints/              # Model checkpoints
-    ├── logs/                     # Training logs
-    ├── plots/                    # Visualization outputs
-    └── reports/                  # LaTeX tables and JSON results
-```
-
----
-
-## Requirements
-
-### Hardware Requirements
-
-| Component | Minimum | Recommended |
-|-----------|---------|-------------|
-| GPU | 1× NVIDIA RTX 3080 (10GB) | 4× NVIDIA RTX 3090 (24GB) |
-| RAM | 64 GB | 384 GB |
-| CPU | 16 cores | 64 cores |
-| Storage | 50 GB SSD | 200 GB NVMe SSD |
-
-### Software Requirements
-
-- **Operating System**: Linux (Ubuntu 20.04+ or CentOS 7+)
-- **Python**: 3.8 - 3.10
-- **CUDA**: 11.7+ (for GPU acceleration)
-
-### Python Dependencies
-
-```
-torch>=2.0.0
-torch-geometric>=2.3.0
-torchdiffeq>=0.2.3
-numpy>=1.21.0
-pandas>=1.3.0
-scipy>=1.7.0
-scikit-learn>=1.0.0
-pyyaml>=6.0
-tensorboard>=2.10.0
-matplotlib>=3.5.0
-seaborn>=0.11.0
-tqdm>=4.62.0
-```
-
----
-
-## Installation
-
-### Option 1: Conda Environment (Recommended)
-
-```bash
-# Clone the repository
-git clone https://github.com/BlockchainLab/ARTEMIS.git
-cd ARTEMIS
-
-# Create conda environment
-conda create -n artemis python=3.9 -y
-conda activate artemis
-
-# Install PyTorch with CUDA support
-conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
-
-# Install PyTorch Geometric
-pip install torch-geometric
-
-# Install additional dependencies
-pip install torchdiffeq numpy pandas scipy scikit-learn pyyaml tensorboard matplotlib seaborn tqdm
-
-# Verify installation
-python -c "import torch; print(f'PyTorch: {torch.__version__}, CUDA: {torch.cuda.is_available()}')"
-```
-
-### Option 2: Pip Installation
-
-```bash
-# Clone and navigate
-git clone https://github.com/BlockchainLab/ARTEMIS.git
-cd ARTEMIS
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### Verification
-
-```bash
-# Run verification script
-python -c "
-import torch
-import torch_geometric
-import torchdiffeq
-print('✓ All dependencies installed successfully')
-print(f'  PyTorch: {torch.__version__}')
-print(f'  PyTorch Geometric: {torch_geometric.__version__}')
-print(f'  CUDA Available: {torch.cuda.is_available()}')
-if torch.cuda.is_available():
-    print(f'  GPU: {torch.cuda.get_device_name(0)}')
-"
-```
-
----
-
-## Dataset
-
-### ETGraph Dataset
-
-ARTEMIS uses the ETGraph dataset for Ethereum transaction analysis:
-
-- **Source**: https://xblock.pro/#/
-dataset/68
-- **Size**: ~10 GB (compressed)
-- **Transactions**: Blocks 8,000,000 - 14,500,000
-- **Phishing Labels**: 9,032 verified phishing addresses
-- **Period**: August 2019 - March 2022
-
-### Dataset Structure
-
-```
-dataset/
-├── 8000000to8999999_transactions.csv      # 2019 transactions
-├── 14250000to14500000_transactions.csv    # 2022 transactions
-└── phishing_labels.csv                     # Ground truth
-```
-
-### Six Temporal Tasks
-
-| Task | Block Range | Period | Description |
-|------|-------------|--------|-------------|
-| 1 | 8,000,000 - 8,999,999 | Aug 2019 | Early phishing patterns |
-| 2 | 8,400,001 - 8,499,999 | Late 2019 | Evolving attack patterns |
-| 3 | 8,900,001 - 8,999,999 | End 2019 | Year-end phishing activity |
-| 4 | 14,250,000 - 14,310,000 | Feb-Mar 2022 | Rise in phishing |
-| 5 | 14,310,001 - 14,370,000 | Mar 2022 | Peak phishing activity |
-| 6 | 14,370,001 - 14,430,000 | Late Mar 2022 | Recent attack wave |
-
-### Download and Prepare Dataset
-
-```bash
-# Create dataset directory
-mkdir -p dataset
-
-# Download from source (replace with actual URL)
-wget -O dataset/etgraph.zip "https://example.com/etgraph.zip"
-unzip dataset/etgraph.zip -d dataset/
-
-# Verify dataset
-python check_blocks_task1.py
+artemis-artifact/
+├── README.md                    # This file
+├── LICENSE                      # Apache 2.0 License
+├── INSTALL.md                   # Detailed installation guide
+├── requirements.txt             # Python dependencies
+├── environment.yml              # Conda environment specification
+│
+├── src/                         # Source code
+│   ├── __init__.py
+│   ├── artemis_model.py         # Main ARTEMIS architecture
+│   ├── artemis_innovations.py   # Six innovation implementations
+│   ├── artemis_adversarial.py   # Adversarial training components
+│   ├── artemis_foundations.py   # Base classes and utilities
+│   ├── baseline_implementations.py  # Baseline methods
+│   └── data_preprocessing.py    # ETGraph data processing
+│
+├── configs/                     # Configuration files
+│   ├── default.yaml             # Default hyperparameters
+│   ├── ablation/                # Ablation study configs
+│   │   ├── no_ode.yaml
+│   │   ├── no_anomaly_memory.yaml
+│   │   ├── no_multihop.yaml
+│   │   ├── no_adversarial_meta.yaml
+│   │   ├── no_ewc.yaml
+│   │   └── no_certified.yaml
+│   └── baselines/               # Baseline configurations
+│       ├── graphsage.yaml
+│       ├── gat.yaml
+│       ├── tgn.yaml
+│       ├── tgat.yaml
+│       ├── jodie.yaml
+│       ├── grabphisher.yaml
+│       └── 2dynethnet.yaml
+│
+├── scripts/                     # Execution scripts
+│   ├── run_main_experiments.py  # Main evaluation (Table 3)
+│   ├── run_ablation_study.py    # Ablation study (Table 4)
+│   ├── run_adversarial_eval.py  # Robustness evaluation (Table 5)
+│   ├── run_continual_learning.py # Continual learning (RQ4)
+│   ├── run_efficiency_analysis.py # Efficiency metrics (RQ5)
+│   ├── download_etgraph.py      # Dataset download script
+│   └── generate_figures.py      # Generate paper figures
+│
+├── data/                        # Data directory (populated by scripts)
+│   ├── README.md                # Data documentation
+│   └── etgraph/                 # ETGraph dataset (download required)
+│
+├── results/                     # Experiment outputs
+│   ├── README.md                # Results documentation
+│   ├── main_results/            # Main experiment results
+│   ├── ablation/                # Ablation study results
+│   ├── adversarial/             # Adversarial evaluation results
+│   └── figures/                 # Generated figures
+│
+├── docs/                        # Documentation
+│   ├── EXPERIMENTS.md           # Detailed experiment guide
+│   ├── HYPERPARAMETERS.md       # Hyperparameter documentation
+│   ├── BASELINES.md             # Baseline implementation details
+│   └── TROUBLESHOOTING.md       # Common issues and solutions
+│
+└── figures/                     # Paper figures (source files)
+    ├── figure1_architecture.drawio
+    ├── figure2_innovations.svg
+    ├── figure3_performance.py
+    ├── figure4_robustness.py
+    └── figure5_efficiency.py
 ```
 
 ---
 
 ## Quick Start
 
-### 1. Preprocess Data
+### 1. Environment Setup
 
 ```bash
-# Preprocess Task 1
-python artemis_data_preprocessing.py \
-    --data_dir ./dataset \
-    --output_dir ./processed \
-    --task_id 1 \
-    --window 100 \
-    --stride 50 \
-    --normalization z-score
+# Clone repository
+git clone https://github.com/[anonymous]/artemis-artifact.git
+cd artemis-artifact
 
-# Preprocess all tasks
-for task in 1 2 3 4 5 6; do
-    python artemis_data_preprocessing.py \
-        --data_dir ./dataset \
-        --output_dir ./processed \
-        --task_id $task
-done
+# Create conda environment
+conda env create -f environment.yml
+conda activate artemis
+
+# Verify installation
+python -c "import torch; print(f'PyTorch {torch.__version__}, CUDA: {torch.cuda.is_available()}')"
 ```
 
-### 2. Train ARTEMIS
+### 2. Download Dataset
 
 ```bash
-# Train on single task
-python artemis_experiment_complete.py \
-    --config config_complete.yaml \
-    --mode train \
-    --task_id 1
+# Download and preprocess ETGraph dataset (~15GB)
+python scripts/download_etgraph.py --output data/etgraph
 
-# Train on all tasks with continual learning
-python artemis_experiment_complete.py \
-    --config config_complete.yaml \
-    --mode train_continual \
-    --tasks 1,2,3,4,5,6
+# Verify dataset
+python scripts/verify_dataset.py
 ```
 
-### 3. Evaluate
+### 3. Run Main Experiments (Table 3)
 
 ```bash
-# Evaluate single model
-python artemis_experiment_complete.py \
-    --config config_complete.yaml \
-    --mode evaluate \
-    --checkpoint ./results/checkpoints/artemis_best.pt
+# Full ARTEMIS evaluation (6 tasks, ~4 hours on 4×RTX 3090)
+python scripts/run_main_experiments.py --config configs/default.yaml
 
-# Run full comparison with baselines
-python artemis_experiment_complete.py \
-    --config config_complete.yaml \
-    --mode compare_all
+# Quick test (1 task, ~20 minutes)
+python scripts/run_main_experiments.py --config configs/default.yaml --quick
+```
+
+### 4. Reproduce All Results
+
+```bash
+# Run complete artifact evaluation (~24 hours)
+./scripts/reproduce_all.sh
+
+# Or run individual experiments:
+python scripts/run_ablation_study.py      # Table 4: ~6 hours
+python scripts/run_adversarial_eval.py    # Table 5: ~8 hours
+python scripts/run_continual_learning.py  # Figure 6: ~2 hours
+python scripts/run_efficiency_analysis.py # Table 6: ~1 hour
 ```
 
 ---
 
-## Reproducing Experimental Results
+## Hardware Requirements
 
-### Full Experimental Pipeline
+### Minimum Requirements
+- **GPU:** 1× NVIDIA GPU with ≥16GB VRAM (e.g., RTX 3080, A100)
+- **RAM:** 64GB system memory
+- **Storage:** 50GB free disk space
+- **OS:** Ubuntu 20.04+ or similar Linux distribution
 
-To reproduce all results from the paper, run:
+### Recommended Configuration (Paper Results)
+- **GPU:** 4× NVIDIA RTX 3090 (24GB each)
+- **RAM:** 384GB system memory
+- **CPU:** AMD EPYC 7742 (64 cores)
+- **Storage:** 100GB NVMe SSD
 
-```bash
-# Complete experiment (estimated time: 6-8 hours on 4× RTX 3090)
-python artemis_experiment_complete.py \
-    --config config_complete.yaml \
-    --mode full_experiment \
-    --output_dir ./results \
-    --num_runs 3 \
-    --seeds 42,123,456
-```
+### Expected Runtime
 
-This will:
-1. Preprocess data for all 6 temporal tasks
-2. Train and evaluate ARTEMIS
-3. Train and evaluate all 6 baselines
-4. Run ablation studies
-5. Perform adversarial robustness evaluation
-6. Generate statistical tests and visualizations
-7. Export LaTeX tables for publication
-
-### Individual Experiments
-
-```bash
-# Main comparison (Table 1 in paper)
-python artemis_experiment_complete.py --mode main_comparison
-
-# Ablation study (Table 4 in paper)
-python artemis_experiment_complete.py --mode ablation
-
-# Adversarial robustness (Table 5 in paper)
-python artemis_experiment_complete.py --mode robustness
-
-# Continual learning (Table 7 in paper)
-python artemis_experiment_complete.py --mode continual_learning
-```
-
-### Expected Output Structure
-
-```
-results/
-├── main_results.json           # Primary metrics for all methods
-├── ablation_results.json       # Contribution of each innovation
-├── robustness_results.json     # Performance under attacks
-├── statistical_tests.json      # p-values, effect sizes
-├── latex_tables/
-│   ├── table1_main_comparison.tex
-│   ├── table4_ablation.tex
-│   └── table5_robustness.tex
-├── plots/
-│   ├── comparison_bar.png
-│   ├── roc_curves.png
-│   ├── ablation_waterfall.png
-│   └── robustness_curves.png
-└── checkpoints/
-    ├── artemis_task1.pt
-    ├── artemis_task2.pt
-    └── ...
-```
+| Experiment | 1× RTX 3090 | 4× RTX 3090 |
+|------------|-------------|-------------|
+| Main Results (Table 3) | ~16 hours | ~4 hours |
+| Ablation Study (Table 4) | ~24 hours | ~6 hours |
+| Adversarial Eval (Table 5) | ~32 hours | ~8 hours |
+| **Total Reproduction** | ~80 hours | ~20 hours |
 
 ---
 
-## Configuration
+## Artifact Claims
 
-The `config_complete.yaml` file contains all hyperparameters with mathematical justifications. Key sections:
+This artifact supports the following claims from the paper:
 
-### Model Architecture
+### Claim 1: Detection Performance (Table 3)
+> "ARTEMIS achieves 91.47% recall and 90.18% F1-score, surpassing 2DynEthNet by 5.19% in recall."
 
-```yaml
-artemis:
-  input_dim: 32          # ETGraph edge features (16 × 2)
-  hidden_dim: 256        # d_h ≥ 8·d_in for expressiveness
-  output_dim: 2          # Binary classification
-  num_gnn_layers: 4      # 4-hop receptive field
-  attention_heads: 8     # Multi-head attention
-  dropout: 0.2           # Regularization
-```
+**Verification:** Run `scripts/run_main_experiments.py` and check `results/main_results/metrics.json`
 
-### Innovation Settings
+### Claim 2: Statistical Significance
+> "Improvements are statistically significant with p < 0.001 and Cohen's d = 1.83."
 
-```yaml
-  # Neural ODE
-  ode_enabled: true
-  ode_solver: 'dopri5'   # 5th order adaptive
-  ode_rtol: 0.001
-  
-  # Anomaly-Aware Storage
-  storage_enabled: true
-  storage_size: 20
-  anomaly_threshold: 2.0  # 2σ statistical threshold
-  
-  # Multi-Hop Broadcast
-  broadcast_enabled: true
-  broadcast_hops: 2
-  
-  # Adversarial Meta-Learning
-  meta_learning_enabled: true
-  adversarial_task_ratio: 0.3
-  
-  # EWC
-  ewc_enabled: true
-  ewc_lambda: 0.5
-  
-  # Adversarial Training
-  adversarial_training: true
-  adversarial_epsilon: 0.1
-```
+**Verification:** Statistical tests are automatically computed and reported in `results/main_results/statistics.json`
 
-### Training Settings
+### Claim 3: Component Contributions (Table 4)
+> "Neural ODE provides the largest single contribution (+4.24% F1)."
 
-```yaml
-training:
-  epochs: 100
-  batch_size: 64
-  learning_rate: 0.001
-  optimizer: 'adamw'
-  weight_decay: 0.01
-  scheduler: 'cosine'
-```
+**Verification:** Run `scripts/run_ablation_study.py` and check `results/ablation/summary.csv`
+
+### Claim 4: Adversarial Robustness (Table 5)
+> "ARTEMIS maintains 85.73% adversarial recall under PGD-20 attack."
+
+**Verification:** Run `scripts/run_adversarial_eval.py` and check `results/adversarial/robustness_metrics.json`
+
+### Claim 5: Certified Accuracy
+> "ARTEMIS achieves 72.34% certified accuracy within perturbation radius ε = 0.1."
+
+**Verification:** Certified accuracy is computed via randomized smoothing in `scripts/run_adversarial_eval.py`
+
+### Claim 6: Efficiency (RQ5)
+> "Inference latency of 8.7ms enables real-time deployment."
+
+**Verification:** Run `scripts/run_efficiency_analysis.py` and check `results/efficiency/timing.json`
 
 ---
 
-## Baselines
+## Detailed Reproduction Guide
 
-ARTEMIS is compared against 6 state-of-the-art methods:
+See [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md) for detailed instructions including:
 
-| Method | Venue | Year | Key Features |
-|--------|-------|------|--------------|
-| **2DynEthNet** | IEEE TIFS | 2024 | Two-dimensional streaming, Reptile meta-learning |
-| **GrabPhisher** | IEEE TIFS | 2024 | Dynamic temporal modeling |
-| **TGN** | ICML | 2020 | Memory-based temporal GNN |
-| **TGAT** | ICLR | 2020 | Temporal graph attention |
-| **GraphSAGE** | NeurIPS | 2017 | Inductive static GNN |
-| **GAT** | ICLR | 2018 | Graph attention networks |
-
-All baselines are implemented in `baseline_implementations.py` with fair comparison guarantees (same hardware, preprocessing, evaluation).
-
----
-
-## Evaluation Metrics
-
-### Primary Metrics
-- **Recall (Sensitivity)**: TP / (TP + FN) — Critical for fraud detection
-- **AUC**: Area Under ROC Curve
-- **F1-Score**: Harmonic mean of precision and recall
-- **FPR**: False Positive Rate
-
-### Secondary Metrics
-- Precision, Accuracy, Specificity
-- MCC (Matthews Correlation Coefficient)
-- Balanced Accuracy, G-Mean
-- Youden's J (Informedness)
-
-### Statistical Tests
-- Paired t-test (parametric)
-- Wilcoxon signed-rank (non-parametric)
-- Cohen's d (effect size)
-- 95% Bootstrap confidence intervals
-- Bonferroni correction for multiple comparisons
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-**CUDA Out of Memory**
-```bash
-# Reduce batch size
-python artemis_experiment_complete.py --batch_size 32
-
-# Use gradient accumulation
-python artemis_experiment_complete.py --gradient_accumulation 4
-```
-
-**No Data Found for Task**
-```bash
-# Verify dataset files exist
-ls -la dataset/*.csv
-
-# Check block ranges
-python check_blocks_task1.py
-```
-
-**Installation Issues**
-```bash
-# Reinstall PyTorch Geometric
-pip uninstall torch-geometric torch-scatter torch-sparse
-pip install torch-geometric
-```
+- Step-by-step experiment reproduction
+- Expected outputs and tolerance ranges
+- Troubleshooting common issues
+- Alternative configurations for limited hardware
 
 ---
 
 ## Citation
 
-If you use ARTEMIS in your research, please cite:
-
-
+```bibtex
+@inproceedings{artemis2026,
+  title     = {{ARTEMIS}: Adversarial-Resistant Temporal Embedding Model for 
+               Intelligent Security in Blockchain Fraud Detection},
+  author    = {Anonymous},
+  booktitle = {Proceedings of the 2026 ACM SIGSAC Conference on Computer and 
+               Communications Security (CCS '26)},
+  year      = {2026},
+  publisher = {ACM},
+  note      = {To appear}
+}
+```
 
 ---
 
+## License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 ## Acknowledgments
 
-- ETGraph dataset providers
-- PyTorch and PyTorch Geometric teams
-- Neural ODE (torchdiffeq) developers
+- ETGraph dataset provided by [Yang et al., 2024]
+- PyTorch Geometric library [Fey & Lenssen, 2019]
+- torchdiffeq library for Neural ODEs [Chen et al., 2018]
 
 ---
 
+## Contact
 
----
-
-**Note for Reviewers**: All experiments are fully reproducible using the provided code and configuration. Expected runtime for full evaluation is 6-8 hours on 4× RTX 3090 GPUs. For faster verification, individual tasks can be run independently.
+For questions about this artifact, please open a GitHub issue or contact the authors at the email provided in the paper (available after double-blind review).
